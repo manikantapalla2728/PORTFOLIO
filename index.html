@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manikanta Palla — Data &amp; ML Product Portfolio</title>
+  <meta name="description" content="Professional portfolio of Manikanta Palla, B.Tech CSE (AI &amp; ML) — Data Analytics, Machine Learning, Computer Vision and Deployed Systems." />
+  <meta name="theme-color" content="#04090E" />
+  
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2304090E'/%3E%3Cpath d='M7 22 V10 h3.2 l6.8 8.4 V10 H20 v12 h-3.2 L10 13.7 V22Z' fill='%2338BDF8'/%3E%3C/svg%3E" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preload" as="image" href="assets/manikanta-neural.jpg" />
+  <link rel="preload" as="image" href="assets/manikanta-analytics.jpg" />
+  <link rel="preload" as="image" href="assets/manikanta-studio.jpg" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===================== PRECISION DATA HUD CURSOR ===================== -->
+  <div class="data-cursor" id="dataCursor" aria-hidden="true">
+    <div class="cursor-hud" id="cursorHud">
+      <span class="hud-tick hud-top"></span>
+      <span class="hud-tick hud-bottom"></span>
+      <span class="hud-tick hud-left"></span>
+      <span class="hud-tick hud-right"></span>
+      <span class="hud-reticle-ring"></span>
+    </div>
+  </div>
+
+  <!-- ===================== AMBIENT LIVE DATA NETWORK CANVAS ===================== -->
+  <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+
+  <!-- ===================== GLOBAL CURSOR-REACTIVE NETWORK CANVAS (ALL PAGES / SECTIONS) ===================== -->
+  <canvas id="cursorNetworkCanvas" class="cursor-network-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===================== TOP NAVIGATION ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav-inner container">
+      <a href="#home" class="brand" aria-label="Manikanta Palla — Home">
+        <div class="brand-symbol" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 32 32" fill="none">
+            <path d="M6 23V9L16 16.5L26 9V23" stroke="url(#brandGrad)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 9C20.5 9 23.5 11 23.5 13.5C23.5 16 20.5 18 16 18" stroke="url(#brandGrad)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="16.5" r="2.8" fill="#38BDF8"/>
+            <circle cx="6" cy="9" r="1.8" fill="#38BDF8"/>
+            <circle cx="26" cy="9" r="1.8" fill="#818CF8"/>
+            <circle cx="16" cy="9" r="1.8" fill="#818CF8"/>
+            <defs>
+              <linearGradient id="brandGrad" x1="6" y1="9" x2="26" y2="23" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#38BDF8"/>
+                <stop offset="1" stop-color="#818CF8"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div class="brand-meta">
+          <span class="brand-name">Manikanta <span class="brand-name-last">Palla</span></span>
+          <span class="brand-domain">
+            <span class="brand-pulse-dot" aria-hidden="true"></span>
+            manikanta.data
+          </span>
+        </div>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary Navigation">
+        <a href="#home" class="nav-link is-active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+      <a href="https://drive.google.com/file/d/1QtJe7N7etur243JpUCBySAsnYvSKcUpa/view?usp=sharing" class="btn btn-ghost btn-sm nav-cta" target="_blank" rel="noopener">
+        <span>Resume PDF</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open Navigation Menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===================== HERO SECTION ===================== -->
+    <section class="hero" id="home">
+      <div class="container hero-layout">
+        <!-- Left: Copy & Primary CTAs -->
+        <div class="hero-copy">
+          <div class="hero-meta-tag">
+            <span class="meta-dot" aria-hidden="true"></span>
+            DATA ANALYTICS · MACHINE LEARNING
+          </div>
+          <h1 class="hero-name">Manikanta <span class="grad">Palla</span></h1>
+          <p class="hero-roles">Specializing in <span class="role-rotator" id="roleRotator">Data Analytics</span></p>
+
+          <p class="hero-kicker" id="heroHeadline">I build the path from raw datasets to production decision systems.</p>
+          <p class="hero-desc" id="heroDesc">B.Tech CSE (AI &amp; ML) candidate. Hands-on experience across SQL analytics, tabular ML, computer vision and lightweight deployments (FastAPI, Streamlit).</p>
+          
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">View Case Studies</a>
+            <a href="https://drive.google.com/file/d/1QtJe7N7etur243JpUCBySAsnYvSKcUpa/view?usp=sharing" class="btn btn-ghost" target="_blank" rel="noopener">Resume PDF</a>
+            <a href="https://github.com/manikantapalla2728" class="btn btn-ghost" target="_blank" rel="noopener">GitHub Profile</a>
+            <a href="https://in.linkedin.com/in/manikanta-palla" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+
+          <div class="hero-stats" id="heroStats" aria-label="Key Profile Telemetry"></div>
+        </div>
+
+        <!-- Right: Executive Two-Photo Flip Showcase Gallery -->
+        <aside class="hero-showcase-panel" aria-label="Manikanta Palla Dual Specialization Showcase">
+          <div class="showcase-header">
+            <div class="showcase-header-left">
+              <span class="showcase-sys-tag">SPECIALIZATION MATRIX</span>
+            </div>
+            <button class="showcase-flip-btn" id="flipPhotoBtn" type="button" aria-label="Flip between Neural and Data Operations photos">
+              <span class="flip-icon" aria-hidden="true">⇄</span>
+              <span class="flip-btn-text">Flip Photo</span>
+            </button>
+          </div>
+
+          <!-- 3D Flipping Photo Card (Neural & Data Operations) -->
+          <div class="showcase-stage">
+            <div class="showcase-flip-card" id="showcaseFlipCard" tabindex="0" role="button" aria-label="Click to flip photo">
+              <div class="showcase-flip-inner">
+                <!-- Front Face: Neural Research & Computer Vision -->
+                <div class="showcase-flip-face showcase-flip-front">
+                  <img class="showcase-img"
+                       src="assets/manikanta-neural.jpg"
+                       alt="Manikanta Palla — Neural Research &amp; Computer Vision" />
+                  <div class="showcase-scanline" aria-hidden="true"></div>
+                  <div class="showcase-hud-corners" aria-hidden="true">
+                    <span class="hud-corner top-left"></span>
+                    <span class="hud-corner top-right"></span>
+                    <span class="hud-corner bottom-left"></span>
+                    <span class="hud-corner bottom-right"></span>
+                  </div>
+                  <div class="showcase-badge">
+                    <div class="showcase-badge-meta">
+                      <span class="badge-dot" aria-hidden="true"></span>
+                      <span class="showcase-badge-title">NEURAL RESEARCH</span>
+                    </div>
+                    <div class="showcase-badge-sub">Computer Vision · CNNs · Deep Learning</div>
+                  </div>
+                </div>
+
+                <!-- Back Face: Data Operations & BI -->
+                <div class="showcase-flip-face showcase-flip-back">
+                  <img class="showcase-img"
+                       src="assets/manikanta-analytics.jpg"
+                       alt="Manikanta Palla — Data Operations &amp; BI" />
+                  <div class="showcase-scanline" aria-hidden="true"></div>
+                  <div class="showcase-hud-corners" aria-hidden="true">
+                    <span class="hud-corner top-left"></span>
+                    <span class="hud-corner top-right"></span>
+                    <span class="hud-corner bottom-left"></span>
+                    <span class="hud-corner bottom-right"></span>
+                  </div>
+                  <div class="showcase-badge">
+                    <div class="showcase-badge-meta">
+                      <span class="badge-dot badge-dot-teal" aria-hidden="true"></span>
+                      <span class="showcase-badge-title">DATA OPERATIONS &amp; BI</span>
+                    </div>
+                    <div class="showcase-badge-sub">SQL Pipelines · Feature Engineering · Analytics</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ===================== 01 ABOUT SECTION ===================== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="eyebrow-index">01</span> ABOUT SPECIFICATION</p>
+          <h2 class="section-title">Student in AI &amp; ML. Builder of structured data systems.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-portrait-card reveal" data-tilt>
+            <div class="about-portrait-frame">
+              <img src="assets/manikanta-studio.jpg" alt="Manikanta Palla — B.Tech CSE (AI &amp; ML)" class="about-portrait-img" loading="lazy" />
+              <div class="about-portrait-scanline" aria-hidden="true"></div>
+              <div class="about-portrait-hud" aria-hidden="true">
+                <span class="hud-corner top-left"></span>
+                <span class="hud-corner top-right"></span>
+                <span class="hud-corner bottom-left"></span>
+                <span class="hud-corner bottom-right"></span>
+              </div>
+            </div>
+            <div class="about-portrait-caption">
+              <div class="about-portrait-name">Manikanta Palla</div>
+              <div class="about-portrait-role">B.Tech CSE (AI &amp; ML) · Data &amp; ML Systems</div>
+            </div>
+          </div>
+          <div class="about-content">
+            <div class="about-copy reveal">
+              <p class="about-lead" id="aboutLead"></p>
+              <p class="about-sub" id="aboutSub"></p>
+              <div class="about-meta" id="aboutMeta"></div>
+            </div>
+            <div class="about-cards" id="aboutCards"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 02 SKILLS MATRIX ===================== -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="eyebrow-index">02</span> TECHNICAL CAPABILITIES</p>
+          <h2 class="section-title">Toolchain &amp; Engineering Stack</h2>
+          <p class="section-lead">Organised by production implementation. No arbitrary percentage bars.</p>
+        </div>
+        <div class="skills-grid" id="skillsGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 03 PROJECTS ===================== -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="eyebrow-index">03</span> PRODUCTION CASE STUDIES</p>
+          <h2 class="section-title">Verified Data &amp; ML Projects</h2>
+          <p class="section-lead">Problem statement, feature engineering, model evaluation, and deployment architecture. No invented scores.</p>
+        </div>
+        
+        <div class="filter-row reveal" id="filterRow" role="tablist" aria-label="Filter case studies">
+          <button class="filter is-on" data-filter="all" role="tab" aria-selected="true">All Stack</button>
+          <button class="filter" data-filter="ml" role="tab" aria-selected="false">Machine Learning</button>
+          <button class="filter" data-filter="data" role="tab" aria-selected="false">Data Analytics</button>
+          <button class="filter" data-filter="cv" role="tab" aria-selected="false">Computer Vision</button>
+          <button class="filter" data-filter="web" role="tab" aria-selected="false">Web / NLP</button>
+        </div>
+
+        <div class="projects-list" id="projectsList"></div>
+        
+        <div class="projects-more reveal">
+          <a href="https://github.com/manikantapalla2728?tab=repositories" class="more-link" target="_blank" rel="noopener" id="moreProjects">View all public repositories on GitHub →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 04 EXPERIENCE & CERTS ===================== -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="eyebrow-index">04</span> CAREER LOG &amp; CREDENTIALS</p>
+          <h2 class="section-title">Internships &amp; Virtual Simulations</h2>
+          <p class="section-lead">Simulations and virtual programs are explicitly labeled as such.</p>
+        </div>
+        
+        <div class="exp-grid">
+          <div>
+            <h3 class="sub-head reveal">Internship Log</h3>
+            <div class="timeline" id="timeline"></div>
+          </div>
+          <div>
+            <h3 class="sub-head reveal">Verified Certifications</h3>
+            <div class="certs" id="certs"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 05 ACHIEVEMENTS & CODING ===================== -->
+    <section class="section" id="achievements">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="eyebrow-index">05</span> BENCHMARKS &amp; PROBLEM SOLVING</p>
+          <h2 class="section-title">Algorithmic Practice &amp; Competitions</h2>
+          <p class="section-lead" id="codingHeadline"></p>
+        </div>
+        
+        <div class="coding-grid" id="codingGrid"></div>
+        <p class="coding-caption reveal" id="codingCaption"></p>
+        
+        <h3 class="sub-head reveal achievements-head">Hackathons &amp; Technical Competitions</h3>
+        <div class="ach-grid" id="achGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 06 JOURNEY VECTOR ===================== -->
+    <section class="section" id="journey">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="eyebrow-index">06</span> GROWTH VECTOR</p>
+          <h2 class="section-title">Analytics → Machine Learning → Data Science / MLE</h2>
+          <p class="section-lead">Current stage: B.Tech student actively preparing for global entry-level &amp; internship roles.</p>
+        </div>
+        
+        <div class="journey-track" id="journeyTrack"></div>
+        <div class="path-row" id="pathRow"></div>
+      </div>
+    </section>
+
+    <!-- ===================== 07 CALL TO ACTION ===================== -->
+    <section class="section cta-section" id="cta">
+      <div class="container reveal">
+        <p class="eyebrow eyebrow-center">GLOBAL RECRUITING AVAILABILITY</p>
+        <h2 class="cta-title" id="ctaTitle">Open to Data Analytics &amp; ML Roles</h2>
+        <p class="cta-line" id="ctaLine">Ready for Data Analyst or Machine Learning entry-level &amp; internship positions globally (On-site / Hybrid / Remote).</p>
+        
+        <div class="hero-cta cta-btns">
+          <a class="btn btn-primary" href="https://drive.google.com/file/d/1QtJe7N7etur243JpUCBySAsnYvSKcUpa/view?usp=sharing" target="_blank" rel="noopener">Resume PDF</a>
+          <a class="btn btn-ghost" href="https://github.com/manikantapalla2728" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn btn-ghost" href="https://in.linkedin.com/in/manikanta-palla" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-ghost" href="#contact">Direct Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT FOOTER ===================== -->
+    <footer class="section contact" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="eyebrow"><span class="eyebrow-index">07</span> CONTACT INTERFACE</p>
+          <h2 class="section-title">Let's discuss data roles.</h2>
+        </div>
+        
+        <div class="contact-grid reveal">
+          <a class="contact-card" href="tel:+919063802728">
+            <span class="contact-label">Direct Mobile / Call</span>
+            <span class="contact-value">+91 9063802728</span>
+          </a>
+          <a class="contact-card" href="mailto:pallamanikanta2728@gmail.com">
+            <span class="contact-label">Direct Email</span>
+            <span class="contact-value">pallamanikanta2728@gmail.com</span>
+          </a>
+          <a class="contact-card" href="https://in.linkedin.com/in/manikanta-palla" target="_blank" rel="noopener">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">/in/manikanta-palla</span>
+          </a>
+          <a class="contact-card" href="https://github.com/manikantapalla2728" target="_blank" rel="noopener">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">@manikantapalla2728</span>
+          </a>
+          <div class="contact-card">
+            <span class="contact-label">Location</span>
+            <span class="contact-value">Amalapuram, AP, India [IST / UTC+5:30]</span>
+          </div>
+        </div>
+        
+        <div class="footer-bar">
+          <p class="footer-copy">© <span id="year"></span> Manikanta Palla</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===================== MODEL SPECIFICATION MODAL ===================== -->
+  <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-panel">
+      <button class="modal-close" id="modalClose" aria-label="Close Model Card">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- 3D Engine & Portfolio Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/visuals.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
