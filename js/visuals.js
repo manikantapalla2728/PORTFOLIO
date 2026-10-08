@@ -244,7 +244,97 @@
     return wrap(W, H, "", s);
   }
 
-  const BUILDERS = { combo, scatter, network, pipeline };
+  /* --------------------------------------------------------------------------
+     5. EMOTION: Multi-Class Facial Expression Confidence & CNN Training Curve
+     -------------------------------------------------------------------------- */
+  function emotion(v) {
+    const W = 460, H = 210;
+    const pad = { l: 20, r: 20, t: 24, b: 24 };
+    let s = drawGrid(W, H, pad, 44, 34);
+
+    // Left Half: Emotion Class Probabilities (Horizontal Bar Chart)
+    const emotions = [
+      { label: "Happy",     prob: 94.2, color: C.teal,  active: true },
+      { label: "Neutral",   prob: 3.8,  color: C.blue,  active: false },
+      { label: "Surprise",  prob: 1.2,  color: C.amber, active: false },
+      { label: "Sad",       prob: 0.5,  color: C.slate, active: false },
+      { label: "Angry",     prob: 0.3,  color: C.slate, active: false },
+    ];
+
+    s += `<text x="24" y="20" font-size="8.5" fill="${C.slateLight}" font-family="IBM Plex Mono, monospace" font-weight="600">CONFIDENCE DISTRIBUTION // SOFTMAX</text>`;
+
+    emotions.forEach((em, i) => {
+      const y = 38 + i * 28;
+      const barMaxW = 120;
+      const barW = (em.prob / 100) * barMaxW;
+
+      // Label
+      s += `<text x="24" y="${y + 11}" font-size="9" fill="${em.active ? '#F1F5F9' : C.slateLight}" font-family="IBM Plex Mono, monospace">${em.label}</text>`;
+
+      // Background bar track
+      s += `<rect x="85" y="${y}" width="${barMaxW}" height="14" rx="3" fill="rgba(148, 163, 184, 0.06)"/>`;
+
+      // Active probability bar
+      s += `<rect class="chart-bar" style="transition-delay:${i * 50}ms" x="85" y="${y}" width="${Math.max(4, barW).toFixed(1)}" height="14" rx="3" fill="${em.color}" opacity="${em.active ? 0.9 : 0.4}"/>`;
+
+      // Percentage label
+      s += `<text x="${85 + barMaxW + 8}" y="${y + 11}" font-size="8.5" fill="${em.active ? em.color : C.slateLight}" font-family="IBM Plex Mono, monospace" font-weight="${em.active ? '700' : '400'}">${em.prob}%</text>`;
+    });
+
+    // Divider
+    s += `<line x1="242" y1="20" x2="242" y2="${H - 24}" stroke="${C.border}" stroke-width="1" stroke-dasharray="3 3"/>`;
+
+    // Right Half: CNN Epoch Training vs Validation Accuracy Curve
+    s += `<text x="256" y="20" font-size="8.5" fill="${C.slateLight}" font-family="IBM Plex Mono, monospace" font-weight="600">CNN VALIDATION ACCURACY // EPOCHS</text>`;
+
+    const curvePad = { l: 256, r: 16, t: 40, b: 38 };
+    const curveW = W - curvePad.r - curvePad.l;
+    const curveH = H - curvePad.t - curvePad.b;
+
+    // Train and Val accuracy points over 8 epochs
+    const trainAcc = [52, 64, 73, 79, 83, 86, 88, 91];
+    const valAcc   = [50, 61, 70, 75, 79, 81, 84, 85];
+
+    const ptsTrain = trainAcc.map((val, i) => [
+      curvePad.l + (i / (trainAcc.length - 1)) * curveW,
+      curvePad.t + curveH - ((val - 45) / 50) * curveH
+    ]);
+    const ptsVal = valAcc.map((val, i) => [
+      curvePad.l + (i / (valAcc.length - 1)) * curveW,
+      curvePad.t + curveH - ((val - 45) / 50) * curveH
+    ]);
+
+    s += `<path class="chart-line" d="${smoothPath(ptsTrain)}" fill="none" stroke="${C.blue}" stroke-width="1.8" stroke-linecap="round"/>`;
+    s += `<path class="chart-line" d="${smoothPath(ptsVal)}" fill="none" stroke="${C.teal}" stroke-width="2" stroke-linecap="round"/>`;
+
+    ptsVal.forEach((p, i) => {
+      s += `<circle class="chart-fade" style="transition-delay:${200 + i * 40}ms" cx="${p[0]}" cy="${p[1]}" r="2.5" fill="#060C12" stroke="${C.teal}" stroke-width="1.5"/>`;
+    });
+
+    // Epoch Axis labels
+    [1, 2, 3, 4, 5, 6, 7, 8].forEach((ep, i) => {
+      const x = curvePad.l + (i / 7) * curveW;
+      s += `<text x="${x}" y="${H - 24}" font-size="7.5" fill="${C.slateLight}" font-family="IBM Plex Mono, monospace" text-anchor="middle">E${ep}</text>`;
+    });
+
+    // Live Classification Result Badge
+    s += `<g class="chart-fade" font-family="IBM Plex Mono, monospace">
+      <rect x="256" y="${H - 18}" width="186" height="15" fill="rgba(16, 185, 129, 0.12)" stroke="${C.teal}" stroke-width="0.8" rx="3"/>
+      <text x="349" y="${H - 7}" font-size="8" fill="${C.teal}" font-weight="700" text-anchor="middle">PREDICTION: HAPPY (CONF: 94.2%)</text>
+    </g>`;
+
+    // Legend
+    s += `<g font-family="IBM Plex Mono, monospace" font-size="7.5" fill="${C.slateLight}">
+      <line x1="365" y1="32" x2="380" y2="32" stroke="${C.blue}" stroke-width="1.5"/>
+      <text x="385" y="34">Train</text>
+      <line x1="415" y1="32" x2="430" y2="32" stroke="${C.teal}" stroke-width="1.5"/>
+      <text x="435" y="34">Val</text>
+    </g>`;
+
+    return wrap(W, H, "", s);
+  }
+
+  const BUILDERS = { combo, scatter, network, pipeline, emotion };
 
   window.Visuals = {
     build(spec) {
